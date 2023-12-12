@@ -56,4 +56,16 @@ th {
     color: white;
 }
 
-/* Add more styles as needed */
+a {
+    text-decoration: none;
+    color: #333; /* Change the color as needed */
+    font-weight: bold;
+    padding: 10px;
+    margin-right: 20px; /* Add margin for separation from other elements */
+    transition: color 0.3s ease; /* Add a smooth transition effect */
+}
+
+/* Hover effect */
+a:hover {
+    color: #4caf50; /* Change the color on hover as needed */
+}

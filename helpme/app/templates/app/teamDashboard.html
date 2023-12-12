@@ -8,21 +8,24 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <div class="participant-form">
-        <form action="" method="post">
-            {% csrf_token %}
-            <label for="issue_title">Issue Title:</label>
-            {{form.title}}
-            <br>
-            <label for="issue_description">Issue Description:</label>
-            {{form.desc}}
-            <br>
-            <label for="languages">Platform:</label>
-            {{form.platform}}
-            <br>
-            <input type="submit" value="Raise Ticket">
-        </form>
-    </div>
+    <a href="{% url 'logout' %}">Logout</a>
+
+    <form action="" method="post">
+        <label for="issue_title">Issue Title:</label>
+        <input type="text" id="issue_title" name="issue_title" required>
+        <br>
+        <label for="issue_description">Issue Description:</label>
+        <textarea id="issue_description" name="issue_description" required></textarea>
+        <br>
+        <label for="languages">Languages:</label>
+        <input type="text" id="languages" name="languages" required>
+        <br>
+        <label for="framework">Framework:</label>
+        <input type="text" id="framework" name="framework" required>
+        <br>
+        <input type="submit" value="Raise Ticket">
+    </form>
+
 
     <div class="raised-tickets">
         <h2>List of Tickets Raised:</h2>
