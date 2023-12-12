@@ -8,7 +8,7 @@ class Venue(models.Model):
     floor = models.IntegerField("Floor", null=True)
     
     def __str__(self):
-        return self.name + " | " + self.floor
+        return self.name + " | Floor " + str(self.floor)
     
 
 class Team(models.Model):
@@ -18,7 +18,17 @@ class Team(models.Model):
     venue = models.ForeignKey(Venue, null=True, on_delete=models.SET_NULL)
     
     def __str__(self):
-        return self.tableNumber + " | " + self.name
+        return str(self.tableNumber) + " | " + self.name
+    
+
+class Mentor(models.Model):
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    firstName = models.CharField("First Name", max_length=255, null=True)
+    lastName = models.CharField("Last Name", max_length=255, null=True)
+    organisation = models.CharField("Organisation", max_length=255, null=True)
+    
+    def __str__(self):
+        return str(self.id) + " | " + self.firstName + " " + self.lastName + " | " + self.organisation  
     
 
 class Ticket(models.Model):
@@ -29,6 +39,7 @@ class Ticket(models.Model):
     )
 
     team = models.ForeignKey(Team, null=True, on_delete=models.CASCADE)
+    mentor = models.ForeignKey(Mentor, null=True, on_delete=models.CASCADE)
     desc = models.CharField("Issue Description", max_length=255, null=True)
     platform = models.CharField("Platform Information", max_length=255, null=True)
     status = models.CharField("Status", max_length=255, choices=STATUS, default='Open', null=True)
@@ -36,4 +47,4 @@ class Ticket(models.Model):
     timeClosed = models.DateTimeField("Closed Time", auto_now_add=True)
     
     def __str__(self):
-        return self.user.team.tableNumber + " | " + self.team.name + " | " + self.timeCreated + " | " + self.status
+        return str(self.user.team.tableNumber) + " | " + self.team.name + " | " + self.timeCreated + " | " + self.status
