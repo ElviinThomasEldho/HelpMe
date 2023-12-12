@@ -9,20 +9,18 @@
 </head>
 <body>
     <h2>Ticket Details:</h2>
-    <p><strong>Time of Raising Issue:</strong> {{ ticket.time_of_creation }}</p>
-    <p><strong>Issue Title:</strong> {{ ticket.issue_title }}</p>
-    <p><strong>Team Name:</strong> {{ ticket.team_name }}</p>
-    <p><strong>Table Number:</strong> {{ ticket.table_number }}</p>
-    <p><strong>Venue:</strong> {{ ticket.venue }}</p>
+    <p><strong>Time of Raising Issue:</strong> {{ ticket.timeCreated }}</p>
+    <p><strong>Issue Title:</strong> {{ ticket.title }}</p>
+    <p><strong>Team Name:</strong> {{ ticket.team.name }}</p>
+    <p><strong>Table Number:</strong> {{ ticket.team.tableNumber }}</p>
+    <p><strong>Venue:</strong> {{ ticket.team.venue }}</p>
+    <p><strong>Status:</strong> {{ ticket.status }}</p>
 
-    <form action="{% url 'close_ticket' ticket.id %}" method="post">
-        {% csrf_token %}
-        <input type="submit" value="Close Ticket">
-    </form>
-
-    <form action="{% url 'pass_ticket' ticket.id %}" method="post">
-        {% csrf_token %}
-        <input type="submit" value="Pass Ticket">
-    </form>
+    {% if ticket.status == "Open" %}
+    <a href="{% url 'acceptTicket' ticket.id %}">Accept Ticket</a>
+    {% elif ticket.status == "Accepted" %}
+    <a href="{% url 'reopenTicket' ticket.id %}">Reopen Ticket</a>
+    <a href="{% url 'closeTicket' ticket.id %}">Close Ticket</a>
+    {% endif %}
 </body>
 </html>

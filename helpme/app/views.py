@@ -17,9 +17,13 @@ def loginUser(request):
 
         if user is not None:
             login(request, user)
-            # group = Group.objects.get(name='Team') 
-            # group.user_set.add(user)
-            return redirect('teamDashboard')
+            if request.user.groups.exists(): 
+                groups = set(group.name for group in request.user.groups.all())
+                for group in groups:
+                    if group == "Team":
+                        return redirect('teamDashboard')
+                    elif group == "Mentor":
+                        return redirect('mentorDashboard')
 
         else:
             messages.info(request, 'Username or Password is incorrect')
@@ -74,14 +78,60 @@ def registerTeam(request):
 
 @mentor_only
 def mentorDashboard(request):
-    mentor = Mentor.objects.get(user = request.user)  
+    mentor = Mentor.objects.get(user = request.user) 
+    openTickets = Ticket.objects.filter(status='Open').order_by('timeCreated')
+    acceptedTickets = Ticket.objects.filter(status='Accepted', mentor=mentor).order_by('timeCreated')
+    closedTickets = Ticket.objects.filter(status='Closed').order_by('timeCreated')
     
-
     context = {
         "mentor": mentor,
+        "openTickets": openTickets,
+        "acceptedTickets": acceptedTickets,
+        "closedTickets": closedTickets,
         }
     
     return render(request, "app/mentorDashboard.html", context)
+
+@mentor_only
+def viewTicket(request, pk):
+    ticket = Ticket.objects.get(id=pk)
+    
+    context = {
+        "ticket": ticket,
+        }
+    
+    return render(request, "app/viewTicket.html", context)
+
+@mentor_only
+def acceptTicket(request, pk):
+    ticket = Ticket.objects.get(id=pk)
+    mentor = Mentor.objects.get(user=request.user)
+    ticket.mentor = mentor
+    ticket.status = 'Accepted'
+    ticket.save()
+    
+    return redirect('mentorDashboard')
+
+@mentor_only
+def closeTicket(request, pk):
+    ticket = Ticket.objects.get(id=pk)
+    mentor = Mentor.objects.get(user=request.user)
+    ticket.mentor = mentor
+    ticket.status = 'Closed'
+    ticket.save()
+    
+    return redirect('mentorDashboard')
+
+@mentor_only
+def reopenTicket(request, pk):
+    ticket = Ticket.objects.get(id=pk)
+    mentor = Mentor.objects.get(user=request.user)
+    ticket.mentor = mentor
+    ticket.status = 'Open'
+    ticket.save()
+    
+    return redirect('mentorDashboard')
+
 
 @team_only
 def teamDashboard(request):

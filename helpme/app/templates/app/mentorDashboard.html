@@ -8,12 +8,13 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <a href="{% url 'logout' %}">Logout</a>
-    <h2>List of All Tickets:</h2>
+    <a href="{% url 'logoutUser' %}">Logout</a>
+    <h1 style="text-align: center;">Welcome {{mentor.firstName}}!</h1>
+    <h2>Accepted Tickets</h2>
     <table>
         <thead>
             <tr>
-                <th>Time of Raising Issue</th>
+                <th>Time Created</th>
                 <th>Issue Title</th>
                 <th>Team Name</th>
                 <th>Table Number</th>
@@ -23,15 +24,75 @@
         </thead>
         <tbody>
             <!-- Iterate through the list of tickets and display each one -->
-            {% for ticket in tickets %}
+            {% for ticket in acceptedTickets %}
                 <tr>
-                    <td>{{ ticket.time_of_creation }}</td>
-                    <td>{{ ticket.issue_title }}</td>
-                    <td>{{ ticket.team_name }}</td>
-                    <td>{{ ticket.table_number }}</td>
-                    <td>{{ ticket.venue }}</td>
+                    <td>{{ ticket.timeCreated }}</td>
+                    <td>{{ ticket.title }}</td>
+                    <td>{{ ticket.team.name }}</td>
+                    <td>{{ ticket.team.tableNumber }}</td>
+                    <td>{{ ticket.team.venue }}</td>
                     <td>
-                        <a href="{% url 'view_ticket' ticket.id %}">Accept Ticket</a>
+                        <a href="{% url 'viewTicket' ticket.id %}">View Ticket</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    
+    <h2>Open Tickets</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Time Created</th>
+                <th>Issue Title</th>
+                <th>Team Name</th>
+                <th>Table Number</th>
+                <th>Venue</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate through the list of tickets and display each one -->
+            {% for ticket in openTickets %}
+                <tr>
+                    <td>{{ ticket.timeCreated }}</td>
+                    <td>{{ ticket.title }}</td>
+                    <td>{{ ticket.team.name }}</td>
+                    <td>{{ ticket.team.tableNumber }}</td>
+                    <td>{{ ticket.team.venue }}</td>
+                    <td>
+                        <a href="{% url 'viewTicket' ticket.id %}">View Ticket</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    
+    <h2>Closed Tickets</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Time Created</th>
+                <th>Issue Title</th>
+                <th>Team Name</th>
+                <th>Table Number</th>
+                <th>Venue</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate through the list of tickets and display each one -->
+            {% for ticket in closedTickets %}
+                <tr>
+                    <td>{{ ticket.timeCreated }}</td>
+                    <td>{{ ticket.title }}</td>
+                    <td>{{ ticket.team.name }}</td>
+                    <td>{{ ticket.team.tableNumber }}</td>
+                    <td>{{ ticket.team.venue }}</td>
+                    <td>
+                        <a href="{% url 'viewTicket' ticket.id %}">View Ticket</a>
                     </td>
                 </tr>
             {% endfor %}
