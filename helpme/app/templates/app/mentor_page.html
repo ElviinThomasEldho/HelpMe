@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Page</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h2>List of All Tickets:</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Time of Raising Issue</th>
+                <th>Issue Title</th>
+                <th>Team Name</th>
+                <th>Table Number</th>
+                <th>Venue</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate through the list of tickets and display each one -->
+            {% for ticket in tickets %}
+                <tr>
+                    <td>{{ ticket.time_of_creation }}</td>
+                    <td>{{ ticket.issue_title }}</td>
+                    <td>{{ ticket.team_name }}</td>
+                    <td>{{ ticket.table_number }}</td>
+                    <td>{{ ticket.venue }}</td>
+                    <td>
+                        <a href="{% url 'view_ticket' ticket.id %}">Accept Ticket</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

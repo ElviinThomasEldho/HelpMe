@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        
+        <label for="team_lead_name">Team Lead Name:</label>
+        <input type="text" id="team_lead_name" name="team_lead_name" required>
+        <br>
+
+        <label for="team_lead_email">Team Lead Email:</label>
+        <input type="email" id="team_lead_email" name="team_lead_email" required>
+        <br>
+
+        <label for="team_name">Team Name:</label>
+        <input type="text" id="team_name" name="team_name" required>
+        <br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+
+        <!-- Add more fields for team lead details as needed -->
+
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>

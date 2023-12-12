@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participant Page</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="participant-form">
+        <form action="{% url 'raise_ticket' %}" method="post">
+            <label for="issue_title">Issue Title:</label>
+            <input type="text" id="issue_title" name="issue_title" required>
+            <br>
+            <label for="issue_description">Issue Description:</label>
+            <textarea id="issue_description" name="issue_description" required></textarea>
+            <br>
+            <label for="languages">Languages:</label>
+            <input type="text" id="languages" name="languages" required>
+            <br>
+            <label for="framework">Framework:</label>
+            <input type="text" id="framework" name="framework" required>
+            <br>
+            <input type="submit" value="Raise Ticket">
+        </form>
+    </div>
+
+    <div class="raised-tickets">
+        <h2>List of Tickets Raised:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Issue Title</th>
+                    <th>Time of Creation</th>
+                    <th>Time of Resolution</th>
+                    <th>Mentor Assigned</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterate through the list of tickets and display each one -->
+                {% for ticket in tickets %}
+                    <tr>
+                        <td>{{ ticket.issue_title }}</td>
+                        <td>{{ ticket.time_of_creation }}</td>
+                        <td>{{ ticket.time_of_resolution }}</td>
+                        <td>{{ ticket.mentor_assigned }}</td>
+                        <td>{{ ticket.status }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
