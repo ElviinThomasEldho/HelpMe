@@ -31,6 +31,44 @@ def logoutUser(request):
     logout(request)
     return redirect('loginUser')
 
+def registerUser(request):
+    form = RegisterForm()
+
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect('registerTeam')
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'app/register.html', context)
+
+@team_only
+def registerTeam(request):
+    form = TeamForm()
+    
+    if request.method == 'POST':
+        form = TeamForm(request.POST)
+        if form.is_valid():
+            team = form.save()
+            return redirect('/trainee/view/')
+
+    context = {
+        "form": form,
+        }
+    
+    return render(request, "app/registerTeam.html", context)
+
 @mentor_only
 def mentorDashboard(request):
     mentor = Mentor.objects.get(user = request.user)  
