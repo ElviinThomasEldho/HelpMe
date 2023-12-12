@@ -7,26 +7,33 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <form action="{% url 'register' %}" method="post">
+    <form action="" method="post">
         {% csrf_token %}
         
-        <label for="team_lead_name">Team Lead Name:</label>
-        <input type="text" id="team_lead_name" name="team_lead_name" required>
+        <label>{{form.username.label}}</label><br>
+        {{form.username}}
         <br>
 
-        <label for="team_lead_email">Team Lead Email:</label>
-        <input type="email" id="team_lead_email" name="team_lead_email" required>
+        <label>{{form.email.label}}</label><br>
+        {{form.email}}
         <br>
 
-        <label for="team_name">Team Name:</label>
-        <input type="text" id="team_name" name="team_name" required>
+        <label>{{form.first_name.label}}</label><br>
+        {{form.first_name}}
         <br>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        
+        <label>{{form.last_name.label}}</label><br>
+        {{form.last_name}}
         <br>
-
-        <!-- Add more fields for team lead details as needed -->
+        
+        <label>{{form.password1.label}}</label><br>
+        {{form.password1}}
+        <br>
+        
+        <label>Confirm Password</label><br>
+        {{form.password2}}
+        <br>
+        {{form.errors}}
 
         <input type="submit" value="Register">
     </form>

@@ -7,18 +7,16 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <form action="{% url 'register' %}" method="post">
+    <form action="" method="POST">
+        {% csrf_token %}
         <label for="team_name">Team Name:</label>
-        <input type="text" id="team_name" name="team_name" required>
+        {{form.name}}
         <br>
         <label for="table_number">Table Number:</label>
-        <input type="text" id="table_number" name="table_number" required>
+        {{form.tableNumber}}
         <br>
         <label for="venue">Venue:</label>
-        <input type="text" id="venue" name="venue" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        {{form.venue}}
         <br>
         <input type="submit" value="Register">
     </form>

@@ -53,7 +53,6 @@ def registerUser(request):
 
     return render(request, 'app/registerUser.html', context)
 
-@team_only
 def registerTeam(request):
     form = TeamForm()
     
@@ -61,7 +60,11 @@ def registerTeam(request):
         form = TeamForm(request.POST)
         if form.is_valid():
             team = form.save()
-            return redirect('/trainee/view/')
+            team.user = request.user
+            team.save()
+            group = Group.objects.get(name='Team') 
+            group.user_set.add(request.user)            
+            return redirect('teamDashboard')
 
     context = {
         "form": form,

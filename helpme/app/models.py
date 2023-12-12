@@ -40,6 +40,7 @@ class Ticket(models.Model):
 
     team = models.ForeignKey(Team, null=True, on_delete=models.CASCADE)
     mentor = models.ForeignKey(Mentor, null=True, on_delete=models.CASCADE)
+    title = models.CharField("Issue Title", max_length=255, null=True)
     desc = models.CharField("Issue Description", max_length=255, null=True)
     platform = models.CharField("Platform Information", max_length=255, null=True)
     status = models.CharField("Status", max_length=255, choices=STATUS, default='Open', null=True)
