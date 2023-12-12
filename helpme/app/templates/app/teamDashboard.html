@@ -1,25 +1,24 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Participant Page</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <div class="participant-form">
         <form action="" method="post">
+            {% csrf_token %}
             <label for="issue_title">Issue Title:</label>
-            <input type="text" id="issue_title" name="issue_title" required>
+            {{form.title}}
             <br>
             <label for="issue_description">Issue Description:</label>
-            <textarea id="issue_description" name="issue_description" required></textarea>
+            {{form.desc}}
             <br>
-            <label for="languages">Languages:</label>
-            <input type="text" id="languages" name="languages" required>
-            <br>
-            <label for="framework">Framework:</label>
-            <input type="text" id="framework" name="framework" required>
+            <label for="languages">Platform:</label>
+            {{form.platform}}
             <br>
             <input type="submit" value="Raise Ticket">
         </form>
@@ -30,10 +29,12 @@
         <table>
             <thead>
                 <tr>
-                    <th>Issue Title</th>
                     <th>Time of Creation</th>
-                    <th>Time of Resolution</th>
+                    <th>Issue Title</th>
+                    <th>Issue Description</th>
+                    <th>Platform</th>
                     <th>Mentor Assigned</th>
+                    <th>Time of Closing</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -41,10 +42,12 @@
                 <!-- Iterate through the list of tickets and display each one -->
                 {% for ticket in tickets %}
                     <tr>
-                        <td>{{ ticket.issue_title }}</td>
-                        <td>{{ ticket.time_of_creation }}</td>
-                        <td>{{ ticket.time_of_resolution }}</td>
-                        <td>{{ ticket.mentor_assigned }}</td>
+                        <td>{{ ticket.timeCreated }}</td>
+                        <td>{{ ticket.title }}</td>
+                        <td>{{ ticket.desc }}</td>
+                        <td>{{ ticket.platform }}</td>
+                        <td>{{ ticket.mentor.name }}</td>
+                        <td>{{ ticket.timeClosed }}</td>
                         <td>{{ ticket.status }}</td>
                     </tr>
                 {% endfor %}

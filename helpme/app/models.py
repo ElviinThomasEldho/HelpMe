@@ -48,4 +48,4 @@ class Ticket(models.Model):
     timeClosed = models.DateTimeField("Closed Time", auto_now_add=True)
     
     def __str__(self):
-        return str(self.user.team.tableNumber) + " | " + self.team.name + " | " + self.timeCreated + " | " + self.status
+        return str(self.id) + " | " + str(self.team.tableNumber) + " | " + self.team.name + " | " + self.status

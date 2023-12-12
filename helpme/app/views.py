@@ -86,10 +86,22 @@ def mentorDashboard(request):
 @team_only
 def teamDashboard(request):
     team = Team.objects.get(user = request.user)  
+    tickets = Ticket.objects.filter(team=team)
+    form = TicketForm()
+
+    if request.method == 'POST':
+        form = TicketForm(request.POST)
+        if form.is_valid():
+            ticket = form.save()
+            ticket.team = team
+            ticket.save()        
+            return redirect('teamDashboard')
     
 
     context = {
         "team": team,
+        "form": form,
+        "tickets": tickets,
         }
     
     return render(request, "app/teamDashboard.html", context)

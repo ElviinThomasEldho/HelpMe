@@ -22,3 +22,9 @@ class TeamForm(ModelForm):
     class Meta:
         model = Team
         fields = ['name','tableNumber','venue']
+        
+
+class TicketForm(ModelForm):
+    class Meta:
+        model = Ticket
+        fields = ['title','desc','platform']
