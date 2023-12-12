@@ -24,7 +24,7 @@ def loginUser(request):
         else:
             messages.info(request, 'Username or Password is incorrect')
 
-    return render(request, 'app/login.html')
+    return render(request, 'app/loginUser.html')
 
 @authenticated_user
 def logoutUser(request):
@@ -51,7 +51,7 @@ def registerUser(request):
         'form': form,
     }
 
-    return render(request, 'app/register.html', context)
+    return render(request, 'app/registerUser.html', context)
 
 @team_only
 def registerTeam(request):

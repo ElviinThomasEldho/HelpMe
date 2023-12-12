@@ -10,4 +10,5 @@ urlpatterns = [
     path('register/', views.registerUser, name='registerUser'),
     path('register-team/', views.registerTeam, name='registerTeam'),
     path('mentor/', views.mentorDashboard, name='mentorDashboard'),
+    path('team/', views.teamDashboard, name='teamDashboard'),
 ]
