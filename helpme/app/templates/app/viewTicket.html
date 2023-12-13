@@ -8,6 +8,10 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
+    <header>
+        <img src="{% static 'images/new-logo.webp' %}" alt="Hackathon Logo">
+        <a href="{% url 'logoutUser' %}">Logout</a>
+    </header>
     <h2>Ticket Details:</h2>
     <p><strong>Time of Raising Issue:</strong> {{ ticket.timeCreated }}</p>
     <p><strong>Issue Title:</strong> {{ ticket.title }}</p>

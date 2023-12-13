@@ -8,8 +8,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <a href="{% url 'logoutUser' %}">Logout</a>
-
+    <header>
+        <img src="{% static 'images/new-logo.webp' %}" alt="Hackathon Logo">
+        <a href="{% url 'logoutUser' %}">Logout</a>
+    </header>
+    
     <h1 style="text-align: center;">Welcome Back {{team.name}}!</h1>
     <form action="" method="post">
         <label for="issue_title">Issue Title:</label>
