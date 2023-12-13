@@ -10,7 +10,7 @@
 <body>
     <header>
         <img src="{% static 'images/new-logo.webp' %}" alt="Hackathon Logo">
-        <a href="{% url 'logoutUser' %}">Logout</a>
+        <a class="logout" href="{% url 'logoutUser' %}">Logout</a>
     </header>
     
     <h1 style="text-align: center;">Welcome Back {{team.name}}!</h1>
@@ -51,7 +51,7 @@
                         <td>{{ ticket.title }}</td>
                         <td>{{ ticket.desc }}</td>
                         <td>{{ ticket.platform }}</td>
-                        <td>{{ ticket.mentor.name }}</td>
+                        <td>{{ ticket.mentor.firstName }} {{ ticket.mentor.lastName }}</td>
                         <td>{{ ticket.timeClosed }}</td>
                         <td>{{ ticket.status }}</td>
                     </tr>

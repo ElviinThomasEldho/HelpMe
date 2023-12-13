@@ -10,7 +10,7 @@
 <body>
     <header>
         <img src="{% static 'images/new-logo.webp' %}" alt="Hackathon Logo">
-        <a href="{% url 'logoutUser' %}">Logout</a>
+        <a class="logout" href="{% url 'logoutUser' %}">Logout</a>
     </header>
     <h2>Ticket Details:</h2>
     <p><strong>Time of Raising Issue:</strong> {{ ticket.timeCreated }}</p>
@@ -21,10 +21,10 @@
     <p><strong>Status:</strong> {{ ticket.status }}</p>
 
     {% if ticket.status == "Open" %}
-    <a href="{% url 'acceptTicket' ticket.id %}">Accept Ticket</a>
+    <a class="btn" href="{% url 'acceptTicket' ticket.id %}">Accept Ticket</a>
     {% elif ticket.status == "Accepted" %}
-    <a href="{% url 'reopenTicket' ticket.id %}">Reopen Ticket</a>
-    <a href="{% url 'closeTicket' ticket.id %}">Close Ticket</a>
+    <a class="btn" href="{% url 'reopenTicket' ticket.id %}">Reopen Ticket</a>
+    <a class="btn" href="{% url 'closeTicket' ticket.id %}">Close Ticket</a>
     {% endif %}
 </body>
 </html>

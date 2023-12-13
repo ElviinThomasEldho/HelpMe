@@ -1,3 +1,7 @@
+* {
+    font-family: "Courier New", monospace;
+}
+
 body {
     font-family: "Courier New", monospace;
     margin: 20px;
@@ -8,6 +12,11 @@ body {
                       linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
     background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
     background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+}
+
+h1, h2, h3 {
+    color: #0f0;
+    margin-inline: 100px;
 }
 
 header {
@@ -38,7 +47,7 @@ header a:hover {
 }
 
 form, table {
-    max-width: 400px;
+    max-width: 50%;
     width: 100%;
     margin: 0 auto;
 }
@@ -56,25 +65,29 @@ textarea {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
+    font-weight: bold;
     box-sizing: border-box;
     border: 2px solid #0f0; /* Green border */
     background-color: #000; /* Black background */
     color: #0f0; /* Green text */
 }
 
-input[type="submit"] {
+input[type="submit"], .btn {
+    text-decoration: none;
     background-color: #0f0; /* Green background */
     color: #000; /* Black text */
     padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
+    font-weight: bold;
+    border: 2px solid #0f0;
+    /* border-radius: 5px; */
     cursor: pointer;
     margin: 10px;
 }
 
-input[type="submit"]:hover {
-    background-color: #fff; /* White background on hover */
-    color: #000; /* Black text on hover */
+input[type="submit"]:hover, .btn:hover {
+    background-color: transparent; 
+    border: 2px solid #0f0;
+    color: #0f0 ; /* Black text on hover */
 }
 
 h2 {
@@ -102,4 +115,10 @@ th {
 
 p {
     color: antiquewhite;
+}
+
+.logout {
+    background-color: transparent; 
+    border: 2px solid #0f0;
+    color: #0f0 ; /* Black text on hover */
 }
