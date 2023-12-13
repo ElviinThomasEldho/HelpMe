@@ -12,17 +12,15 @@
 
     <h1 style="text-align: center;">Welcome Back {{team.name}}!</h1>
     <form action="" method="post">
+        {% csrf_token %}
         <label for="issue_title">Issue Title:</label>
-        <input type="text" id="issue_title" name="issue_title" required>
+        {{form.title}}
         <br>
         <label for="issue_description">Issue Description:</label>
-        <textarea id="issue_description" name="issue_description" required></textarea>
+        {{form.desc}}
         <br>
-        <label for="languages">Languages:</label>
-        <input type="text" id="languages" name="languages" required>
-        <br>
-        <label for="framework">Framework:</label>
-        <input type="text" id="framework" name="framework" required>
+        <label for="platform">Platform:</label>
+        {{form.platform}}
         <br>
         <input type="submit" value="Raise Ticket">
     </form>
