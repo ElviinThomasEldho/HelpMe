@@ -8,7 +8,10 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <a href="{% url 'logoutUser' %}">Logout</a>
+    <header>
+        <img src="{% static 'images/new-logo.webp' %}" alt="Hackathon Logo">
+        <a href="{% url 'logoutUser' %}">Logout</a>
+    </header>
     <h1 style="text-align: center;">Welcome {{mentor.firstName}}!</h1>
     <h2>Accepted Tickets</h2>
     <table>
