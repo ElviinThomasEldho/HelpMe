@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Judging Page</title>
+</head>
+<body>
+    <header>
+        <img src="new-logo.webp" alt="Hackathon Logo">
+        <a href="{% url 'logout' %}">Logout</a>
+    </header>
+    
+    <div class="container">
+        <h2>Judging Page</h2>
+        <form action="#" method="POST">
+            <div class="input-group">
+                <label for="teamName">Team Name:</label>
+                <input type="text" id="teamName" name="teamName" required>
+            </div>
+
+            <div class="input-group">
+                <label for="tableNumber">Table Number:</label>
+                <input type="text" id="tableNumber" name="tableNumber" required>
+            </div>
+            <br>
+            <div class="criteria-group">
+                <div class="criteria">
+                    <label for="criteriaA">Criteria A:</label>
+                    <input type="number" id="criteriaA" name="criteriaA" min="0" max="4" required>
+                </div>
+
+                <div class="criteria">
+                    <label for="criteriaB">Criteria B:</label>
+                    <input type="number" id="criteriaB" name="criteriaB" min="0" max="4" required>
+                </div>
+
+                <div class="criteria">
+                    <label for="criteriaC">Criteria C:</label>
+                    <input type="number" id="criteriaC" name="criteriaC" min="0" max="4" required>
+                </div>
+
+                <div class="criteria">
+                    <label for="criteriaD">Criteria D:</label>
+                    <input type="number" id="criteriaD" name="criteriaD" min="0" max="4" required>
+                </div>
+            </div>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
