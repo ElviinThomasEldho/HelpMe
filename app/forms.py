@@ -28,3 +28,9 @@ class TicketForm(ModelForm):
     class Meta:
         model = Ticket
         fields = ['title','desc','platform']
+        
+
+class JudgementForm(ModelForm):
+    class Meta:
+        model = Judgement
+        exclude = ['mentor','round','timeCreated']

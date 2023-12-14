@@ -83,8 +83,23 @@ def mentorDashboard(request):
     acceptedTickets = Ticket.objects.filter(status='Accepted', mentor=mentor).order_by('timeCreated')
     closedTickets = Ticket.objects.filter(status='Closed').order_by('timeCreated')
     
+    form = JudgementForm()
+    
+    if request.method == 'POST':
+        form = JudgementForm(request.POST)
+        if form.is_valid():
+            judgement = form.save()
+            print(judgement)
+            judgement.mentor = mentor
+            judgement.round = 'Round 1'
+            print(judgement.mentor)
+            print(judgement.round)
+            judgement.save()           
+            return redirect('mentorDashboard')
+
     context = {
         "mentor": mentor,
+        "form": form,
         "openTickets": openTickets,
         "acceptedTickets": acceptedTickets,
         "closedTickets": closedTickets,

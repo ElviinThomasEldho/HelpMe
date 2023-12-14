@@ -101,5 +101,18 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <h2>Judgement Form</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.teamName}}
+        {{form.tableNumber}}
+        {{form.criteriaA}}
+        {{form.criteriaB}}
+        {{form.criteriaC}}
+        {{form.criteriaD}}
+        {{form.errors}}
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
